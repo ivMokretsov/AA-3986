@@ -1,0 +1,7 @@
+---
+- name: Ensure Nginx is installed (Debian-based systems)
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+  notify: Restart Nginx

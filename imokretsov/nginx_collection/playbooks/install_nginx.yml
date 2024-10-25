@@ -1,0 +1,5 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - imokretsov.nginx_collection.install_nginx

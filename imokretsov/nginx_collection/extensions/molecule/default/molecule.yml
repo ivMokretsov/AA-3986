@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+  options:
+    requirements-file: requirements.yml
+
+platforms:
+  - name: molecule-astra
+    image: localhost/ansible-ee
+    privileged: true
+    groups:
+      - all
+
+driver:
+  options:
+    managed: false
+    login_cmd_template: "podman exec -ti {instance} bash"
+    ansible_connection_options:
+      ansible_connection: podman
+
+provisioner:
+  name: ansible
+  playbooks:
+    create: create.yml
+    converge: converge.yml
+    destroy: destroy.yml
+  inventory:
+    group_vars:
+      all:
+        ansible_python_interpreter: /usr/bin/python3.7
+        ansible_user: root
