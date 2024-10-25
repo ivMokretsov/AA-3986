@@ -1,0 +1,23 @@
+---
+- name: Verify Nginx is running
+  hosts: all
+  become: true
+  tasks:
+    - name: Старт тестирования
+      ansible.builtin.debug:
+        msg: 'Начало тестирования'
+
+    - name: Проверка, что Nginx запущен
+      ansible.builtin.service_facts:
+
+    - name: Убедиться, что Nginx запущен
+      ansible.builtin.assert:
+        that:
+          - "'nginx' in services"
+          - "services['nginx'].state == 'running'"
+        fail_msg: 'Nginx не запущен!'
+        success_msg: 'Nginx запущен и работает.'
+
+    - name: Окончание тестирования
+      ansible.builtin.debug:
+        msg: 'Окончание тестирования'

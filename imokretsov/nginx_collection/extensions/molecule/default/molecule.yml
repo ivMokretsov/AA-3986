@@ -23,6 +23,7 @@ provisioner:
   playbooks:
     create: create.yml
     converge: converge.yml
+    verify: verify.yml
     destroy: destroy.yml
   inventory:
     group_vars:
